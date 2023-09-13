@@ -1,0 +1,14 @@
+extends layout 
+
+block content
+  form(action="" method='POST')
+    div.formGroup
+      label(for="username") Username:
+      input(type="text" placeholder='username' required='true' name='username')
+    div.formGroup
+      label(for="password") Password:
+      input(type="password" required='true' name='password')
+    div.formGroup
+      label(for="confirmPassword") Confirm password:
+      input(type="password" name='confirmPassword')
+    button.formSubmit(type='submit') Sign Up  
