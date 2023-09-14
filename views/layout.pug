@@ -4,5 +4,21 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    h1 private club
+   header.header
+    a(href="/")
+      h1.title private club  
+    if (currentUser)
+      div.headerButtons
+        if (currentUser.membership === false)
+          a(href="/club/membership") Join Club
+        else
+          p You're club member 
+        p.welcome #{currentUser.username}
+        a(href="/club/log-out") Log Out 
+    else 
+      div.headerButtons
+        a(href="/club/log-in") Log In 
+        |
+        a(href='/club/sign-up') Sign Up
+  main.main 
     block content

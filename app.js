@@ -74,6 +74,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.session = req.session;
   next();
 });
 

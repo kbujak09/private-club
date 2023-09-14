@@ -1,11 +1,14 @@
 extends layout 
 
 block content 
-  form(action="/club/log-in" method='POST')
+  form.form(action="/club/log-in" method='POST')
+    div.formTitle Log in
     div.formGroup
       label(for="username") Username: 
-      input(type="text" name='username' placeholder='username')
+      input(type="text" name='username')
     div.formGroup
       label(for="password") Password: 
       input(type="password" name='password')
-    button Log In 
+    button.formSubmit Log In 
+  if (session.messages)
+    li.formErrors #{session.messages[session.messages.length - 1]}

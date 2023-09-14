@@ -1,0 +1,11 @@
+extends layout 
+
+block content
+  if (!currentUser)
+    div.notLogged You must be logged in to join club!
+  else
+    form.code(action='' method='POST')
+      div.formGroup
+        label(for="secret") Enter secret code: (7312)
+        input.formInput(type="number" name='secret') 
+      button.formSubmit Join
