@@ -1,4 +1,29 @@
 extends layout
 
 block content
-  
+    if (messages.length === 0)
+      div.messagesEmpty
+        p There's no messages :(
+        a(href="/club/message/create") 
+          button.messageAdd.formSubmit Add message
+    else
+      if (currentUser) 
+        ul.messages 
+          each message in messages
+            li.message
+              div.messageInfo
+                h2.messageAuthor #{message.author.username}
+                div.messageDate #{message.date_formatted}
+              div.messageText #{message.text}
+        a(href="/club/message/create")
+          button.messageAdd.formSubmit Add message
+      else 
+        div.blurred
+          ul.messages 
+            each message in messages
+              li.message
+                div.messageInfo
+                  h2.messageAuthor #{message.author.username}
+                  div.messageDate #{message.date_formatted}
+                div.messageText #{message.text}
+          div.blurredMessage Log in to see the messages.

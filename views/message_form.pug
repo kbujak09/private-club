@@ -1,0 +1,16 @@
+extends layout 
+
+block content
+  if (!currentUser) 
+    div.notLogged You must be logged in to create a message! 
+  else
+    if (currentUser.membership === false)
+      div.notLogged You must be a club member to add a message!
+    else
+      form.center.messageCreate(action='' method='POST')
+        div.groupForm
+          p.messageCreateAuthor #{author.username}
+        div.groupForm
+          label(for='text')
+          textarea(name="text", cols="40", rows="8" maxlength='240') 
+        button.formSubmit Add message

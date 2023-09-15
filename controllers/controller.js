@@ -1,12 +1,15 @@
 const User = require('../models/user');
-const Comment = require('../models/comment');
+const Message = require('../models/message');
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { body, validationResult } = require('express-validator');
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.render('index')
+  const messages = await Message.find().populate('author').exec();
+  res.render('index', {
+    messages: messages.reverse()
+  })
 })
 
 exports.user_sign_in_get = asyncHandler(async (req, res, next) => {
@@ -92,6 +95,44 @@ exports.user_log_in_post =
     }
   })
 
-  exports.comment_create_get = []
+  exports.message_create_get = asyncHandler(async (req, res, next) => {
+    if (req.user) {
+      const author = await User.findById(req.user.id).exec();
+      res.render('message_form', {
+        author: author
+      });
+    }
+    else {
+      res.render('message_form');
+    }
+  })
 
-  exports.comment_create_post = []
+  exports.message_create_post = [
+    body('text', 'Message must not be empty.')
+      .trim()
+      .isLength({ max: 240 })
+      .withMessage("Message can't be longer than 240 characters.")
+      .escape(),
+    asyncHandler(async (req, res, next) => {
+      const author = await User.findById(req.user.id).exec();
+      const errors = validationResult(req);
+
+      const message = new Message({
+        author: author,
+        text: req.body.text,
+        date: new Date(),
+      });
+
+      if (!errors.isEmpty()) {
+        res.render('message_form', {
+          text: message,
+          errors: errors,
+        });
+        return;
+      }
+      else {
+        await message.save(),
+        res.redirect('/');
+      }
+    }),
+  ]

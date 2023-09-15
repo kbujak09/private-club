@@ -64,7 +64,7 @@ a {
   align-self: center;
   font-weight: 700;
   padding: 8px 24px;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.8px;
   border-radius: 8px;
   border: 0;
   background-color: var(--main-color);
@@ -104,6 +104,81 @@ a {
   font-weight: 700;
   margin-bottom: 8px;
 }
-.form, .notLogged, .code {
+.form, .notLogged, .code, .messagesEmpty, .center {
   margin-bottom: 16vh;
+}
+.messagesEmpty > p {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+}
+.messagesEmpty > a {
+  display: flex;
+  justify-content: center;
+}
+textarea {
+  resize: none;
+  font-size: 18px;
+  padding: 8px 12px;
+  line-height: 24px;
+  font-family: 'Montserrat', sans-serif;
+}
+.messageCreate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.messageCreateAuthor {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+}
+.messages {
+  margin: 0;
+  margin-bottom: 24px;
+  list-style: none;
+  padding: 24px;
+  width: 48vw;
+  height: 72vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 24px;
+}
+.messageText {
+  inline-size: 70%;
+  overflow-wrap: break-word;
+}
+.messageInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.message {
+  border-bottom: 1px solid black;
+  padding-bottom: 12px;
+}
+.messageDate {
+  letter-spacing: 0.6px;
+  font-weight: 500;
+}
+.blurred {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.blurred > ul {
+  overflow: hidden;
+}
+.blurredMessage {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  font-size: 24px;
+  font-weight: 700;
 }
