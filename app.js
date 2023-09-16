@@ -24,21 +24,6 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session( {secret: "cats", resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.urlencoded({ extended: false }));
-
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
@@ -72,6 +57,23 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+app.use(logger('dev'));
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session( {secret: (process.env.MONGODB_URL || 'cats'), resave: false, saveUninitialized: false, cookie: {
+  secure: false, // required for cookies to work on HTTPS
+} }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.session = req.session;
@@ -80,7 +82,6 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/club', clubRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

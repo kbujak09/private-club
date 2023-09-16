@@ -85,6 +85,10 @@ a {
 }
 .formErrors {
   margin-top: 24px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
 }
 .notLogged {
   font-size: 20px;
@@ -104,7 +108,7 @@ a {
   font-weight: 700;
   margin-bottom: 8px;
 }
-.form, .notLogged, .code, .messagesEmpty, .center {
+.formContainer, .notLogged, .code, .messagesEmpty, .center {
   margin-bottom: 16vh;
 }
 .messagesEmpty > p {
@@ -164,21 +168,16 @@ textarea {
   font-weight: 500;
 }
 .blurred {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.blurred > ul {
-  overflow: hidden;
-}
-.blurredMessage {
   display: flex;
   position: absolute;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
-  backdrop-filter: blur(6px);
+  height: 90%;
   font-size: 24px;
   font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+.blurredMessage {
+  margin-bottom: 16vh;
 }

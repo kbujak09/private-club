@@ -1,19 +1,20 @@
 extends layout 
 
 block content
-  form.form(action="" method='POST') 
-    div.formTitle Create account
-    div.formGroup
-      label(for="username") Username:
-      input(type="text" required='true' name='username' value=(user === undefined ? '' : user.username))
-    div.formGroup
-      label(for="password") Password:
-      input(type="password" required='true' name='password')
-    div.formGroup
-      label(for="confirmPassword") Confirm password:
-      input(type="password" required='true' name='confirmPassword')
-    button.formSubmit(type='submit') Sign Up
-  if errors
-    ul.formErrors
-      for error in errors
-        li!= error.msg  
+  div.formContainer
+    form.form(action="" method='POST') 
+      div.formTitle Create account
+      div.formGroup
+        label(for="username") Username:
+        input(type="text" required='true' name='username' value=(user === undefined ? '' : user.username))
+      div.formGroup
+        label(for="password") Password:
+        input(type="password" required='true' name='password')
+      div.formGroup
+        label(for="confirmPassword") Confirm password:
+        input(type="password" required='true' name='confirmPassword')
+      button.formSubmit(type='submit') Sign Up
+    if errors
+      ul.formErrors
+        for error in errors
+          li!= error.msg  

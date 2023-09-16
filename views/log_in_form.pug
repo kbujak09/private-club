@@ -1,14 +1,16 @@
 extends layout 
 
 block content 
-  form.form(action="/club/log-in" method='POST')
-    div.formTitle Log in
-    div.formGroup
-      label(for="username") Username: 
-      input(type="text" name='username')
-    div.formGroup
-      label(for="password") Password: 
-      input(type="password" name='password')
-    button.formSubmit Log In 
-  if (session.messages)
-    li.formErrors #{session.messages[session.messages.length - 1]}
+  div.formContainer
+    form.form(action="/club/log-in" method='POST')
+      div.formTitle Log in
+      div.formGroup
+        label(for="username") Username: 
+        input(type="text" name='username')
+      div.formGroup
+        label(for="password") Password: 
+        input(type="password" name='password')
+      button.formSubmit Log In 
+    if (session.messages)
+      ul.formErrors 
+        li #{session.messages[session.messages.length - 1]}
