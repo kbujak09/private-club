@@ -41,6 +41,8 @@ exports.user_sign_in_post = [
             const user = new User({
               username: req.body.username,
               password: hashedPassword,
+              membership: req.body.admin === '4837' ? true : false,
+              admin: req.body.admin === '4837' ? true : false,
             });
             if (!errors.isEmpty()) {
               res.render('sign_up_form', {
@@ -61,7 +63,7 @@ exports.user_sign_in_post = [
 ]
 
 exports.user_log_in_get = asyncHandler(async (req, res, next) => {
-  res.render('log_in_form', { user: req.user });
+  res.render('log_in_form');
 });
 
 exports.user_log_in_post = 
@@ -136,3 +138,13 @@ exports.user_log_in_post =
       }
     }),
   ]
+
+  exports.message_delete_get = asyncHandler(async (req, res, next) => {
+    const user = await User.findById(req.user.id).exec();
+    if (user && user.admin === true) {
+      await Message.findByIdAndDelete(req.params.id).exec();
+    }
+    res.redirect('/')
+  });
+
+  exports.message_delete_post = [];

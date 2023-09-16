@@ -13,5 +13,6 @@ router.get('/membership', controller.user_membership_get);
 router.post('/membership', controller.user_membership_post);
 router.get('/message/create', controller.message_create_get);
 router.post('/message/create', controller.message_create_post);
+router.get('/message/:id/delete', controller.message_delete_get);
 
 module.exports = router;

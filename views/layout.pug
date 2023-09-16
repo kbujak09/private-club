@@ -12,7 +12,10 @@ html
         if (currentUser.membership === false)
           a(href="/club/membership") Join Club
         else
-          p You're a club member 
+          if (currentUser.admin === false)
+            p You're a club member
+          else
+            p You're a club member admin
         p.welcome #{currentUser.username}
         a(href="/club/log-out") Log Out 
     else 

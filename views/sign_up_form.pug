@@ -13,6 +13,9 @@ block content
       div.formGroup
         label(for="confirmPassword") Confirm password:
         input(type="password" required='true' name='confirmPassword')
+      div.formGroup
+        label(for="admin") Admin (secret code):
+        input(type="number" name='admin') 
       button.formSubmit(type='submit') Sign Up
     if errors
       ul.formErrors

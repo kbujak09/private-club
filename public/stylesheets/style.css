@@ -162,10 +162,12 @@ textarea {
 .message {
   border-bottom: 1px solid black;
   padding-bottom: 12px;
+  position: relative;
 }
 .messageDate {
   letter-spacing: 0.6px;
   font-weight: 500;
+  margin-right: 36px;
 }
 .blurred {
   display: flex;
@@ -180,4 +182,23 @@ textarea {
 }
 .blurredMessage {
   margin-bottom: 16vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.messageDelete {
+  position: absolute;
+  top: 22px;
+  right: 8px;
+  font-size: 20px;
+  font-weight: 700;
 }
