@@ -25,6 +25,7 @@ a {
   padding: 20px;
   background-color: var(--main-color);
   font-size: 2.2rem;
+  height: 10vh;
 }
 .welcome {
   font-weight: 700;
@@ -42,6 +43,7 @@ a {
   align-items: center;
   justify-content: center;
   flex: 1;
+  height: 90vh;
 }
 .form {
   display: flex;
@@ -72,7 +74,7 @@ a {
   border-radius: 8px;
   border: 0;
   background-color: var(--main-color);
-  margin-top: 12px;
+  margin: 12px 0 48px 0;
   cursor: pointer;
   border: 1px solid transparent;
 }
@@ -148,7 +150,7 @@ textarea {
   list-style: none;
   padding: 24px;
   width: 48vw;
-  height: 72vh;
+  height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
