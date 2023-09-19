@@ -13,10 +13,11 @@ block content
           li.message
             div.messageInfo
               h2.messageAuthor #{message.author.username}
-              div.messageDate #{message.date_formatted}
+              div.messageDateAndDelete
+                div.messageDate #{message.date_formatted}
+                if (currentUser.admin === true)
+                  a.messageDelete(href='/club/message/' + message.id + '/delete' value=message.id) X
             div.messageText #{message.text}
-            if (currentUser.admin === true)
-              a.messageDelete(href='/club/message/' + message.id + '/delete' value=message.id) X
       a(href="/club/message/create")
         button.messageAdd.formSubmit Add message
     else 
